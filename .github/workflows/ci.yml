@@ -55,6 +55,14 @@ jobs:
           name: coverage-report
           path: ./CoverageReport
 
+      - name: 🧪 Post Test Results to Summary
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: Test Results
+          path: './TestResults/**/*.trx'
+          reporter: dotnet-trx
+
       - name: 📤 Upload Test Results
         uses: actions/upload-artifact@v4
         if: always()
